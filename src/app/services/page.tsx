@@ -108,7 +108,7 @@ const maintenancePlans = [
 
 export default function Services() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="container mx-auto px-4 py-20">
       <h1 className="text-4xl font-bold text-center mb-12">Services & Pricing</h1>
       
       {/* Services Overview */}
@@ -116,40 +116,42 @@ export default function Services() {
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="card bg-base-100 shadow-xl"
           >
-            <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
-            <p className="text-gray-600 mb-6">{service.description}</p>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold mb-2">Key Features:</h3>
-                <ul className="space-y-2">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="card-body">
+              <h2 className="card-title text-2xl mb-4">{service.title}</h2>
+              <p className="opacity-70 mb-6">{service.description}</p>
+              
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold mb-2">Key Features:</h3>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center">
+                        <svg
+                          className="h-5 w-5 text-success mr-2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <div className="space-y-2">
-                <p><span className="font-bold">Technologies:</span> {service.examples}</p>
-                <p><span className="font-bold">Price Range:</span> {service.priceRange}</p>
-                <p><span className="font-bold">Hosting:</span> {service.hosting}</p>
-                <p><span className="font-bold">Maintenance:</span> {service.maintenancePlan}</p>
-                <p><span className="font-bold">Ideal for:</span> {service.idealFor}</p>
+                <div className="space-y-2 opacity-70">
+                  <p><span className="font-bold">Technologies:</span> {service.examples}</p>
+                  <p><span className="font-bold">Price Range:</span> {service.priceRange}</p>
+                  <p><span className="font-bold">Hosting:</span> {service.hosting}</p>
+                  <p><span className="font-bold">Maintenance:</span> {service.maintenancePlan}</p>
+                  <p><span className="font-bold">Ideal for:</span> {service.idealFor}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -163,31 +165,29 @@ export default function Services() {
           {maintenancePlans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-white rounded-lg shadow-lg overflow-hidden ${
-                plan.recommended ? 'ring-2 ring-blue-500' : ''
+              className={`card bg-base-100 shadow-xl ${
+                plan.recommended ? 'border-2 border-primary' : ''
               }`}
             >
               {plan.recommended && (
-                <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2">
-                  <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-blue-500 text-white">
-                    Recommended
-                  </span>
+                <div className="absolute -top-4 right-4">
+                  <div className="badge badge-primary">Recommended</div>
                 </div>
               )}
               
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+              <div className="card-body">
+                <h3 className="card-title text-2xl mb-2">{plan.name}</h3>
                 <div className="flex items-baseline mb-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-gray-500 ml-1">{plan.period}</span>
+                  <span className="text-4xl font-bold text-primary">{plan.price}</span>
+                  <span className="opacity-70 ml-1">{plan.period}</span>
                 </div>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
+                <p className="opacity-70 mb-6">{plan.description}</p>
                 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-blue-500 mr-2"
+                        className="h-5 w-5 text-success mr-2"
                         fill="none"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -202,16 +202,18 @@ export default function Services() {
                   ))}
                 </ul>
                 
-                <Link
-                  href="/contact"
-                  className={`block w-full text-center py-3 px-6 rounded-lg font-medium transition-colors ${
-                    plan.recommended
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                  }`}
-                >
-                  Get Started
-                </Link>
+                <div className="card-actions justify-end">
+                  <Link
+                    href="/contact"
+                    className={`btn btn-block ${
+                      plan.recommended
+                        ? 'btn-primary'
+                        : 'btn-outline'
+                    }`}
+                  >
+                    Get Started
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -219,14 +221,18 @@ export default function Services() {
       </div>
 
       {/* Call to Action */}
-      <div className="text-center">
-        <p className="text-xl mb-6">Need a custom solution? Let's discuss your project requirements.</p>
-        <Link
-          href="/contact"
-          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-        >
-          Get in Touch
-        </Link>
+      <div className="hero bg-base-200 rounded-box p-8">
+        <div className="hero-content text-center">
+          <div>
+            <p className="text-xl mb-6">Need a custom solution? Let's discuss your project requirements.</p>
+            <Link
+              href="/contact"
+              className="btn btn-primary"
+            >
+              Get in Touch
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -43,71 +43,66 @@ const services = [
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-            Transforming Ideas into Digital Reality
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            I create beautiful, high-performance websites that help businesses grow and succeed in the digital world.
-          </p>
-          <Link
-            href="/contact"
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-          >
-            Get in Touch
-          </Link>
+      <section className="hero min-h-screen bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Transforming Ideas into Digital Reality
+            </h1>
+            <p className="py-6 text-xl md:text-2xl">
+              I create beautiful, high-performance websites that help businesses grow and succeed in the digital world.
+            </p>
+            <Link href="/contact" className="btn btn-primary">Get in Touch</Link>
+          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="w-full py-20 bg-white px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 bg-base-100">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Services & Pricing</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl opacity-70 max-w-3xl mx-auto">
               From simple static websites to complex e-commerce solutions, I provide a range of services to meet your digital needs.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
-              >
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <div className="mb-6">
-                  <p className="text-3xl font-bold text-blue-600 mb-2">{service.priceRange}</p>
-                  <p className="text-gray-500">Starting from</p>
+              <div key={index} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <div className="card-body">
+                  <h3 className="card-title text-2xl mb-4">{service.title}</h3>
+                  <p className="opacity-70 mb-6">{service.description}</p>
+                  <div className="mb-6">
+                    <p className="text-3xl font-bold text-primary mb-2">{service.priceRange}</p>
+                    <p className="opacity-60">Starting from</p>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center">
+                        <svg
+                          className="h-5 w-5 text-success mr-2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="card-actions justify-end">
+                    <Link href="/services" className="btn btn-outline btn-block">
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/services"
-                  className="block w-full text-center py-3 px-6 bg-gray-50 text-gray-800 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-                >
-                  Learn More
-                </Link>
               </div>
             ))}
           </div>
@@ -115,7 +110,7 @@ export default function Home() {
           <div className="text-center">
             <Link
               href="/services"
-              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+              className="link link-primary inline-flex items-center text-lg"
             >
               View detailed pricing and maintenance plans
               <svg
@@ -137,18 +132,17 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-20 bg-gradient-to-br from-blue-600 to-indigo-600 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Let's work together to create something amazing. Get in touch to discuss your project requirements.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-gray-50 transition-colors"
-          >
-            Get Started
-          </Link>
+      <section className="hero bg-primary text-primary-content py-20">
+        <div className="hero-content text-center">
+          <div>
+            <h2 className="text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+            <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+              Let's work together to create something amazing. Get in touch to discuss your project requirements.
+            </p>
+            <Link href="/contact" className="btn btn-outline btn-white">
+              Get Started
+            </Link>
+          </div>
         </div>
       </section>
     </main>
